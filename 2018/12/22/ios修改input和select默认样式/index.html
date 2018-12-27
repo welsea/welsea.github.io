@@ -11,7 +11,7 @@
 
     <title>
         
-        横向滚动 - Weslea&#39;s Blog
+        ios(safari)修改input和select默认样式 - Weslea&#39;s Blog
         
     </title>
 
@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#横向滚动"><span class="toc-text">横向滚动</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#标题都不想写（"><span class="toc-text">标题都不想写（</span></a></li></ol>
 </div>
     
 </div>
@@ -119,18 +119,15 @@
 
 <div class="post-container">
     <div class="post-title">
-        横向滚动
+        ios(safari)修改input和select默认样式
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2018-11-15 12:18:06</span></span>
+        <span class="attr">发布于：<span>2018-12-22 21:47:19</span></span>
         
         <span class="attr">标签：/
         
         <a class="tag" href="/tags/#css" title="css">css</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#html" title="html">html</a>
         <span>/</span>
         
         
@@ -140,13 +137,8 @@
 
     </div>
     <div class="post-content ">
-        <h1 id="横向滚动"><a href="#横向滚动" class="headerlink" title="横向滚动"></a>横向滚动</h1><ul>
-<li><p>css：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.scroll-list</span>&#123;</span><br><span class="line">    <span class="attribute">overflow-x</span>: scroll;</span><br><span class="line">    <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">    <span class="attribute">overflow-y</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.list-item</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:inline-block;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">20%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>html</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"scroll-list"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"list-item"</span>&gt;</span></span><br><span class="line">        test</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
+        <h2 id="标题都不想写（"><a href="#标题都不想写（" class="headerlink" title="标题都不想写（"></a>标题都不想写（</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span>&#123;</span><br><span class="line">    <span class="attribute">-webkit-appearance</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">select</span>&#123;</span><br><span class="line">    <span class="attribute">-webkit-appearance</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是因为这样就没有小三角了，于是在背景加一个小三角图片<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">select</span>&#123;</span><br><span class="line">    <span class="attribute">-webkit-appearance</span>: none；</span><br><span class="line">    background: <span class="built_in">url</span>(<span class="string">'../img/select_down.png'</span>) no-repeat right;</span><br><span class="line">    <span class="attribute">background-size</span>: <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">background-position-x</span>: <span class="number">96%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
         
         <br>

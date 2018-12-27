@@ -11,7 +11,7 @@
 
     <title>
         
-        横向滚动 - Weslea&#39;s Blog
+        select的点击事件 - Weslea&#39;s Blog
         
     </title>
 
@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#横向滚动"><span class="toc-text">横向滚动</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#下拉选择-lt-select-的点击事件"><span class="toc-text">下拉选择\&lt;select&gt;的点击事件</span></a></li></ol>
 </div>
     
 </div>
@@ -119,18 +119,18 @@
 
 <div class="post-container">
     <div class="post-title">
-        横向滚动
+        select的点击事件
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2018-11-15 12:18:06</span></span>
+        <span class="attr">发布于：<span>2018-12-22 21:50:29</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#css" title="css">css</a>
+        <a class="tag" href="/tags/#js" title="js">js</a>
         <span>/</span>
         
-        <a class="tag" href="/tags/#html" title="html">html</a>
+        <a class="tag" href="/tags/#jQuery" title="jQuery">jQuery</a>
         <span>/</span>
         
         
@@ -140,13 +140,9 @@
 
     </div>
     <div class="post-content ">
-        <h1 id="横向滚动"><a href="#横向滚动" class="headerlink" title="横向滚动"></a>横向滚动</h1><ul>
-<li><p>css：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.scroll-list</span>&#123;</span><br><span class="line">    <span class="attribute">overflow-x</span>: scroll;</span><br><span class="line">    <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">    <span class="attribute">overflow-y</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.list-item</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:inline-block;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">20%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>html</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"scroll-list"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"list-item"</span>&gt;</span></span><br><span class="line">        test</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
+        <h2 id="下拉选择-lt-select-的点击事件"><a href="#下拉选择-lt-select-的点击事件" class="headerlink" title="下拉选择\&lt;select>的点击事件"></a>下拉选择\&lt;select>的点击事件</h2><p>html为<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"sort-by"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>Sort by<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"Hotest"</span>&gt;</span>Hotest<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"Newest"</span>&gt;</span>Newest<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"Rarest"</span>&gt;</span>Rarest<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>如果给option绑定click事件是没有用的，给select绑定click事件则会在选中option之前就触发。<br><br>需要给select绑定onchange事件。代码如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#sort-by'</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log($(<span class="keyword">this</span>).val())</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>这个时候console.log打印出来的就是选中的option的值啦。</p>
 
         
         <br>

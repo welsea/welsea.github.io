@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        输入时提示和自动补全 - Weslea&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Allons-y! </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>welsea</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> Allons-y! </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        输入时提示和自动补全
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-12-24 21:53:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#js" title="js">js</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content ">
+        <p>其实jQuery UI有autocomplete，但是和公司现在的项目不知道怎么就冲突了（。于是使用了最原始的js来实现。</p>
+<ul>
+<li><p>html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"autocomplete"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"myInput"</span> <span class="attr">autocomplete</span>=<span class="string">"off"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"area"</span> <span class="attr">placeholder</span>=<span class="string">"Name"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>css</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#myInput</span>&#123;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0px</span> <span class="number">0px</span> <span class="number">2px</span> <span class="number">0px</span> <span class="built_in">rgba</span>(170, 170, 170, 1);</span><br><span class="line">    <span class="attribute">font-family</span>: Arial;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="built_in">rgba</span>(255, 255, 255, 0);</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">25px</span> <span class="number">10px</span> <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">3%</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">70%</span>;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#848484</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.autocomplete</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">40%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.select-list</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">justify-content</span>: flex-start;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.autocomplete-items</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="built_in">rgba</span>(255, 255, 255, 0);</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0px</span> <span class="number">0px</span> <span class="number">2px</span> <span class="number">0px</span> <span class="built_in">rgba</span>(170, 170, 170, 1);</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#848484</span>;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">999999</span>;</span><br><span class="line">    <span class="comment">/* position the autocomplete items to be the same width as the container: */</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">autocomplete</span>(<span class="params">inp, arr</span>) </span>&#123;</span><br><span class="line">  <span class="comment">/*the autocomplete function takes two arguments,</span></span><br><span class="line"><span class="comment">  the text field element and an array of possible autocompleted values:*/</span></span><br><span class="line">  <span class="keyword">var</span> currentFocus;</span><br><span class="line">  <span class="comment">/*execute a function when someone writes in the text field:*/</span></span><br><span class="line">  inp.addEventListener(<span class="string">"input"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> a, b, i, val = <span class="keyword">this</span>.value;</span><br><span class="line">      <span class="comment">/*close any already open lists of autocompleted values*/</span></span><br><span class="line">      closeAllLists();</span><br><span class="line">      <span class="keyword">if</span> (!val) &#123; <span class="keyword">return</span> <span class="literal">false</span>;&#125;</span><br><span class="line">      currentFocus = <span class="number">-1</span>;</span><br><span class="line">      <span class="comment">/*create a DIV element that will contain the items (values):*/</span></span><br><span class="line">      a = <span class="built_in">document</span>.createElement(<span class="string">"DIV"</span>);</span><br><span class="line">      a.setAttribute(<span class="string">"id"</span>, <span class="keyword">this</span>.id + <span class="string">"autocomplete-list"</span>);</span><br><span class="line">      a.setAttribute(<span class="string">"class"</span>, <span class="string">"autocomplete-items"</span>);</span><br><span class="line">      <span class="comment">/*append the DIV element as a child of the autocomplete container:*/</span></span><br><span class="line">      <span class="keyword">this</span>.parentNode.appendChild(a);</span><br><span class="line">      <span class="comment">/*for each item in the array...*/</span></span><br><span class="line">      <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="comment">/*check if the item starts with the same letters as the text field value:*/</span></span><br><span class="line">        <span class="keyword">if</span> (arr[i].substr(<span class="number">0</span>, val.length).toUpperCase() == val.toUpperCase()) &#123;</span><br><span class="line">          <span class="comment">/*create a DIV element for each matching element:*/</span></span><br><span class="line">          b = <span class="built_in">document</span>.createElement(<span class="string">"DIV"</span>);</span><br><span class="line">          <span class="comment">/*make the matching letters bold:*/</span></span><br><span class="line">          b.innerHTML = <span class="string">"&lt;strong&gt;"</span> + arr[i].substr(<span class="number">0</span>, val.length) + <span class="string">"&lt;/strong&gt;"</span>;</span><br><span class="line">          b.innerHTML += arr[i].substr(val.length);</span><br><span class="line">          <span class="comment">/*insert a input field that will hold the current array item's value:*/</span></span><br><span class="line">          b.innerHTML += <span class="string">"&lt;input type='hidden' value='"</span> + arr[i] + <span class="string">"'&gt;"</span>;</span><br><span class="line">          <span class="comment">/*execute a function when someone clicks on the item value (DIV element):*/</span></span><br><span class="line">              b.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">              <span class="comment">/*insert the value for the autocomplete text field:*/</span></span><br><span class="line">              inp.value = <span class="keyword">this</span>.getElementsByTagName(<span class="string">"input"</span>)[<span class="number">0</span>].value;</span><br><span class="line">              <span class="comment">/*close the list of autocompleted values,</span></span><br><span class="line"><span class="comment">              (or any other open lists of autocompleted values:*/</span></span><br><span class="line">              closeAllLists();</span><br><span class="line">          &#125;);</span><br><span class="line">          a.appendChild(b);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">/*execute a function presses a key on the keyboard:*/</span></span><br><span class="line">  inp.addEventListener(<span class="string">"keydown"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> x = <span class="built_in">document</span>.getElementById(<span class="keyword">this</span>.id + <span class="string">"autocomplete-list"</span>);</span><br><span class="line">      <span class="keyword">if</span> (x) x = x.getElementsByTagName(<span class="string">"div"</span>);</span><br><span class="line">      <span class="keyword">if</span> (e.keyCode == <span class="number">40</span>) &#123;</span><br><span class="line">        <span class="comment">/*If the arrow DOWN key is pressed,</span></span><br><span class="line"><span class="comment">        increase the currentFocus variable:*/</span></span><br><span class="line">        currentFocus++;</span><br><span class="line">        <span class="comment">/*and and make the current item more visible:*/</span></span><br><span class="line">        addActive(x);</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (e.keyCode == <span class="number">38</span>) &#123; <span class="comment">//up</span></span><br><span class="line">        <span class="comment">/*If the arrow UP key is pressed,</span></span><br><span class="line"><span class="comment">        decrease the currentFocus variable:*/</span></span><br><span class="line">        currentFocus--;</span><br><span class="line">        <span class="comment">/*and and make the current item more visible:*/</span></span><br><span class="line">        addActive(x);</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (e.keyCode == <span class="number">13</span>) &#123;</span><br><span class="line">        <span class="comment">/*If the ENTER key is pressed, prevent the form from being submitted,*/</span></span><br><span class="line">        e.preventDefault();</span><br><span class="line">        <span class="keyword">if</span> (currentFocus &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">          <span class="comment">/*and simulate a click on the "active" item:*/</span></span><br><span class="line">          <span class="keyword">if</span> (x) x[currentFocus].click();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">addActive</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="comment">/*a function to classify an item as "active":*/</span></span><br><span class="line">    <span class="keyword">if</span> (!x) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">/*start by removing the "active" class on all items:*/</span></span><br><span class="line">    removeActive(x);</span><br><span class="line">    <span class="keyword">if</span> (currentFocus &gt;= x.length) currentFocus = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (currentFocus &lt; <span class="number">0</span>) currentFocus = (x.length - <span class="number">1</span>);</span><br><span class="line">    <span class="comment">/*add class "autocomplete-active":*/</span></span><br><span class="line">    x[currentFocus].classList.add(<span class="string">"autocomplete-active"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">removeActive</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="comment">/*a function to remove the "active" class from all autocomplete items:*/</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; x.length; i++) &#123;</span><br><span class="line">      x[i].classList.remove(<span class="string">"autocomplete-active"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">closeAllLists</span>(<span class="params">elmnt</span>) </span>&#123;</span><br><span class="line">    <span class="comment">/*close all autocomplete lists in the document,</span></span><br><span class="line"><span class="comment">    except the one passed as an argument:*/</span></span><br><span class="line">    <span class="keyword">var</span> x = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"autocomplete-items"</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; x.length; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (elmnt != x[i] &amp;&amp; elmnt != inp) &#123;</span><br><span class="line">      x[i].parentNode.removeChild(x[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*execute a function when someone clicks in the document:*/</span></span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    closeAllLists(e.target);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> names=[<span class="string">'Anna'</span>,<span class="string">'Bob'</span>,<span class="string">'Cavin'</span>,<span class="string">'Parcy'</span>,<span class="string">'Mark'</span>,<span class="string">'Leia'</span>,<span class="string">'David'</span>,<span class="string">'Martin'</span>,<span class="string">'Ryan'</span>,<span class="string">'Anakin'</span>,<span class="string">'Luke'</span>,<span class="string">'Sirius'</span>,<span class="string">'James'</span>];</span><br><span class="line">autocomplete(<span class="built_in">document</span>.getElementById(<span class="string">"myInput"</span>), names);</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
