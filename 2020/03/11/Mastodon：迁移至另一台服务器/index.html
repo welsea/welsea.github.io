@@ -11,7 +11,7 @@
 
     <title>
         
-        Hello World - Weslea&#39;s Blog
+        Mastodon:迁移至另一台服务器 - Weslea&#39;s Blog
         
     </title>
 
@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#allons-y"><span class="toc-text">allons-y</span></a></li></ol>
+    
 </div>
     
 </div>
@@ -119,21 +119,51 @@
 
 <div class="post-container">
     <div class="post-title">
-        Hello World
+        Mastodon:迁移至另一台服务器
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2018-12-06 18:19:58</span></span>
+        <span class="attr">发布于：<span>2020-03-11 14:06:22</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#mastodon" title="mastodon">mastodon</a>
+        <span>/</span>
         
         
+        </span>
         <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
 </span>
 
     </div>
     <div class="post-content ">
-        <h1 id="allons-y"><a href="#allons-y" class="headerlink" title="allons-y"></a>allons-y</h1><ul>
-<li>test works</li>
-</ul>
+        <p>其实本来是不需要迁移的…结果稿v2ray+websocet+tls的时候不晓得改到什么了结果mastodon service起不来，修修改改nginx也起不来了（。<br>果断放弃迁移服务器算了（。</p>
+<p>首先官方文档是很详细的！！一级棒！<br>其实本来是不需要迁移的…结果稿v2ray+websocet+tls的时候不晓得改到什么了结果mastodon service起不来，修修改改nginx也起不来了（。</p>
+<p>果断放弃迁移服务器算了（。</p>
+<p>首先官方文档是很详细的！！一级棒！<a href="https://docs.joinmastodon.org/admin/migrating/" target="_blank" rel="noopener">Mastodon:Migrating to a new machine</a></p>
+<p>不过因为我自己的VPS比较小，所以搞了SWAP空间之后才开始按照教程做。</p>
+<p>遇到的问题：</p>
+<ol>
+<li><p>安装node.js时：</p>
+<p><code>#官方命令</code></p>
+<p><code>curl -sL https://deb.nodesource.com/setup_12.x | bash -</code></p>
+<p>这个时候会出现提示消息说nodejs 12.X安装失败之类的，不过按照给的提示直接安装node.js就行了。</p>
+</li>
+<li><p>用rsync传文件：</p>
+<p>需要输入密码，不过我本来mastodon用户就是没密码的，这里设置一个密码就行了。</p>
+<p><code>sudo passwd mastodon</code></p>
+</li>
+<li><p>安装SSL证书出错</p>
+<p>进行到<code>certbot --nginx -d example.com</code>这里时安装证书老是出错。不知道是不是cloudflare的原因，总之先把proxy关掉了，再重新申请证书就成功了…</p>
+</li>
+<li><p>设置mastodon服务自动启动出错</p>
+<p>进行到<code>systemctl enable mastodon-*</code>报错，具体错误信息大概是locate不到一个mastodon的service，那执行<code>systemctl enable mastodon-web mastodon-sidekiq mastodon-streaming</code>就好啦。</p>
+</li>
+<li><p>timeline刷新不出来，一直提示500 error</p>
+<p>这个是真的烦，一开始都不晓得为什么，来来回回重新弄了好几次。直到我看到了<a href="https://discourse.joinmastodon.org/t/500-errors-after-2-6-1-upgrade/1370" target="_blank" rel="noopener">500 errors after 2.6.1 upgrade</a></p>
+<p>所以在mastodon用户下（进入/live），运行<code>RAILS_ENV=production bundle exec rake db:migrate</code>就行了。</p>
+</li>
+</ol>
 
         
         <br>
@@ -190,25 +220,6 @@
 <script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-
-    <script>
-        /**
-         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-        */
-        if( '' || '')
-        var disqus_config = function () {
-            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-
-        (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://welsea-42.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    </script>
 
 
 
