@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Weslea&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Allons-y! </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>welsea</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> Allons-y! </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-03-20 13:24:11</span></span>
+        
+        
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content ">
+        <p>-–</p>
+<p>title: V2ray配置websocket+tls</p>
+<p>date: 2020-03-20 12:55:22</p>
+<p>tags: [v2ray]</p>
+<p>-–</p>
+<p>#准备工作</p>
+<ol>
+<li>VPSx1</li>
+<li>域名x1</li>
+<li>cloudflare账号x1</li>
+</ol>
+<p>#开始</p>
+<p>##域名添加到cloudflare</p>
+<ol>
+<li>DNS填好之后记得把Proxy status打开，云朵变成橙黄色显示Proxied。</li>
+<li>SSL/TLS里面选择Flexible，然后在Edge Certificates里把TLS 1.3关闭。</li>
+</ol>
+<p>##设置VPS时间</p>
+<p>用<code>date -R</code> 查看当前时间，和PC时间不同的话改一下。</p>
+<p>我用的Ubuntu 18.04，步骤如下：</p>
+<ol>
+<li><p>运行<code>tzselect</code>，按照提示选择区域</p>
+</li>
+<li><p>复制文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>再用<code>date -R</code>查看应该就一致了。</p>
+</li>
+</ol>
+<p>##安装v2ray并配置</p>
+<p>先更新一下系统</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+<p>安装v2ray需要的unzip和daemon</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install unzip daemon</span><br></pre></td></tr></table></figure>
+<p>安装v2ray</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -L -s https://install.direct/go.sh)</span><br></pre></td></tr></table></figure>
+<p>修改配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/v2ray/config.json</span><br></pre></td></tr></table></figure>
+<p>配置文件示例：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"log"</span>: &#123;</span><br><span class="line">    <span class="attr">"loglevel"</span>: <span class="string">"warning"</span>,</span><br><span class="line">    <span class="attr">"access"</span>: <span class="string">"/dev/null"</span>,</span><br><span class="line">    <span class="attr">"error"</span>: <span class="string">"/dev/null"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"inbounds"</span>: [&#123;</span><br><span class="line">    <span class="attr">"listen"</span>:<span class="string">"127.0.0.1"</span>,</span><br><span class="line">    "port": 10000, #端口号随意</span><br><span class="line">    "protocol": "vmess",</span><br><span class="line">    "settings": &#123;</span><br><span class="line">      "clients": [</span><br><span class="line">        &#123;</span><br><span class="line">          "id": "de20d937-ca8f-af14-ea07-20b45447d371", #UUID改成自己的</span><br><span class="line">          "level": 1,</span><br><span class="line">          "alterId": 64</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">	"streamSettings": &#123;</span><br><span class="line">        "network": "ws",</span><br><span class="line">        "wsSettings": &#123;</span><br><span class="line">        "path": "/bannedbook" #这里/后的设定也随意</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;],</span><br><span class="line">  "outbounds": [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">      <span class="attr">"settings"</span>: &#123;&#125;,</span><br><span class="line">      <span class="attr">"tag"</span>: <span class="string">"allowed"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"blackhole"</span>,</span><br><span class="line">      <span class="attr">"settings"</span>: &#123;&#125;,</span><br><span class="line">      <span class="attr">"tag"</span>: <span class="string">"blocked"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  "routing": &#123;</span><br><span class="line">    "rules": [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"field"</span>,</span><br><span class="line">        <span class="attr">"ip"</span>: [</span><br><span class="line">          <span class="string">"geoip:private"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">"outboundTag"</span>: <span class="string">"blocked"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置后测试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/v2ray/v2ray -<span class="built_in">test</span> -config /etc/v2ray/config.json</span><br></pre></td></tr></table></figure>
+<p>##安装nginx并配置</p>
+<p>安装nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get -y install nginx</span><br></pre></td></tr></table></figure>
+<p>然后替换/etc/nginx.conf为如下配置，此配置文件是通用配置，不管什么域名都可以使用，直接下载覆盖即可:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.githubusercontent.com/bannedbook/fanqiang/master/v2ss/server-cfg/nginx.conf -O -&gt; /etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
+<p>之后修改一下nginx.conf，需要修改两处：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">user www-data;</span><br><span class="line">worker_processes auto;</span><br><span class="line">pid /run/nginx.pid;</span><br><span class="line">include /etc/nginx/modules-enabled/*.conf;</span><br><span class="line">worker_rlimit_nofile  655350;</span><br><span class="line">events &#123;</span><br><span class="line">	use epoll;</span><br><span class="line">	worker_connections 65536;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">	sendfile on;</span><br><span class="line">	tcp_nopush on;</span><br><span class="line">	tcp_nodelay on;</span><br><span class="line">	keepalive_timeout 65;</span><br><span class="line">	types_hash_max_size 2048;</span><br><span class="line">	include /etc/nginx/mime.types;</span><br><span class="line">	default_type application/octet-stream;</span><br><span class="line">	ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE</span><br><span class="line">	ssl_prefer_server_ciphers on;</span><br><span class="line">	access_log /var/log/nginx-access.log;</span><br><span class="line">	error_log /var/log/nginx-error.log;</span><br><span class="line"></span><br><span class="line">	gzip on;</span><br><span class="line">	server &#123;</span><br><span class="line">		listen 80 default_server;</span><br><span class="line">		listen [::]:80 default_server;</span><br><span class="line">		root /var/www/html;</span><br><span class="line">	</span><br><span class="line">		index index.html index.htm index.nginx-debian.html;</span><br><span class="line">	</span><br><span class="line">		server_name _;</span><br><span class="line">	</span><br><span class="line">		location / &#123;</span><br><span class="line">			try_files $uri $uri/ =404;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">    location /bannedbook &#123; #与 V2Ray 配置中的 path 保持一致</span><br><span class="line">	    proxy_redirect off;</span><br><span class="line">	    proxy_pass http://127.0.0.1:10000; #端口号同样</span><br><span class="line">	    proxy_http_version 1.1;</span><br><span class="line">	    proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">	    proxy_set_header Connection &quot;upgrade&quot;;</span><br><span class="line">	    proxy_set_header Host $http_host;</span><br><span class="line">	</span><br><span class="line">	    # Show realip in v2ray access.log</span><br><span class="line">	    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">	    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;	</span><br><span class="line">    &#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试nginx配置<code>nginx -t</code></p>
+<p>重新载入配置<code>nginx -s reload</code></p>
+<p>在这里重启一下v2ray <code>service v2ray restart</code></p>
+<p>##客户端说明</p>
+<p>###windows</p>
+<p>用的v2rayN，和基本v2ray填写差不多。</p>
+<p>地址填域名，端口443。</p>
+<p>UUID和额外ID按照配置填写。</p>
+<p>传输协议选WS。</p>
+<p>路径填配置里的path，不要忘记/</p>
+<p>底层传输安全选tls</p>
+<p>###Andriod</p>
+<p>客户端的话V2rayNG和BifrostV都可以用，配置和Windows差不多。</p>
+<p>###iOS</p>
+<p>客户端用shadowroket。其他相同照着填就ok。</p>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
