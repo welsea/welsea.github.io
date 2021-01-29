@@ -11,7 +11,7 @@
 
     <title>
         
-        select的点击事件 - Weslea&#39;s Blog
+        解决vue-router传值Boolean变成String - Weslea&#39;s Blog
         
     </title>
 
@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#下拉选择-lt-select-的点击事件"><span class="toc-text">下拉选择\&lt;select&gt;的点击事件</span></a></li></ol>
+    
 </div>
     
 </div>
@@ -119,18 +119,15 @@
 
 <div class="post-container">
     <div class="post-title">
-        select的点击事件
+        解决vue-router传值Boolean变成String
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2018-12-22 21:50:29</span></span>
+        <span class="attr">发布于：<span>2020-11-18 23:13:22</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#js" title="js">js</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#jQuery" title="jQuery">jQuery</a>
+        <a class="tag" href="/tags/#vue" title="vue">vue</a>
         <span>/</span>
         
         
@@ -140,9 +137,14 @@
 
     </div>
     <div class="post-content ">
-        <h2 id="下拉选择-lt-select-的点击事件"><a href="#下拉选择-lt-select-的点击事件" class="headerlink" title="下拉选择\&lt;select>的点击事件"></a>下拉选择\&lt;select>的点击事件</h2><p>html为<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"sort-by"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>Sort by<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"Hotest"</span>&gt;</span>Hotest<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"Newest"</span>&gt;</span>Newest<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"Rarest"</span>&gt;</span>Rarest<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>如果给option绑定click事件是没有用的，给select绑定click事件则会在选中option之前就触发。<br><br>需要给select绑定onchange事件。代码如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#sort-by'</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log($(<span class="keyword">this</span>).val())</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>这个时候console.log打印出来的就是选中的option的值啦。</p>
+        <p>用vue-router的query传值，结果Boolean变成了String。是因为query传值是从url中取值的。如果类型确定的话改成用params传值就好了。<br><br><br>这里顺便说一下query和params的区别：</p>
+<ul>
+<li><p>query使用path来指定跳转的views</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$router.push(&#123;</span><br><span class="line">    path:<span class="string">'/page'</span>,</span><br><span class="line">    query:&#123;</span><br><span class="line">        name:<span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>params使用name来指定。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$router.push(&#123;</span><br><span class="line">    name:<span class="string">'Page'</span>,</span><br><span class="line">    params:&#123;</span><br><span class="line">        name:<span class="keyword">this</span>.name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
 
         
         <br>
